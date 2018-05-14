@@ -68,7 +68,7 @@ CREATE TABLE `tmuser_task` (
 
   `tmuser_task_tmuser` int(11) NOT NULL,
 
-  `tmuser_task_order` int(11) NOT NULL,
+  `tmuser_task_order` int(11) NOT NULL DEFAULT 1,
 
   PRIMARY KEY (`tmuser_task_task`,`tmuser_task_tmuser`),
 
@@ -96,11 +96,11 @@ INSERT INTO `task` (`task_id`, `task_name`, `task_description`, `task_creator`, 
 
 (3, 'Projet 2', 'Projet 2, ID 3', 1, NULL, '2018-03-07 10:52:12', 0, 0, '2018-05-07 16:24:41', 2),
 
-(4, 'Tache 1', 'Tâche 1, ID 4, Parent Projet 1', 1, 2, '2018-05-07 15:07:23', 0, 0, '2018-05-07 13:27:50', 1),
+(4, 'Tache 1', 'TÃ¢che 1, ID 4, Parent Projet 1', 1, 2, '2018-05-07 15:07:23', 0, 0, '2018-05-07 13:27:50', 1),
 
 (5, 'Projet 3', 'Projet 3, ID 5', 1, NULL, '2018-05-07 16:47:34', 0, 0, '2018-05-07 16:24:41', 0),
 
-(6, 'Tâche 3', 'Tâche 3, ID 6, Parent Projet 3', 1, 5, '2018-05-07 16:47:57', 0, 0, '2018-05-07 14:48:07', 0);
+(6, 'TÃ¢che 3', 'TÃ¢che 3, ID 6, Parent Projet 3', 1, 5, '2018-05-07 16:47:57', 0, 0, '2018-05-07 14:48:07', 0);
 
 
 
