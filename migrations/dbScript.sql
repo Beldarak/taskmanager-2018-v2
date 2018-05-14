@@ -38,7 +38,7 @@ CREATE TABLE `task` (
 
   `task_parent` int(11),
 
-  `task_limit` datetime NOT NULL,
+  `task_limit` datetime,
 
   `task_status` boolean DEFAULT FALSE,
 
