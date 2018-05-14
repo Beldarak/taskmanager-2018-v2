@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name' => 'Project Manager',
+    'name' => Yii::t('app','Project Manager'),
     'language' => 'fr',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],

@@ -1,4 +1,4 @@
-DROP DATABASE taskmanager2018;
+DROP DATABASE IF EXISTS taskmanager2018;
 CREATE DATABASE taskmanager2018;
 USE taskmanager2018;
 

@@ -17,11 +17,16 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+	'About' => 'À propos',
     'Are you sure you want to delete this item?' => 'Êtes⁻vous sûr de vouloir supprimer cet élément?',
+	'Contact' => 'Contact',
     'Create Task' => 'Créer tâche',
     'Create Tmuser' => 'Créer Utilisateur',
     'Create Tmuser Task' => '',
     'Delete' => 'Supprimer',
+	'Home' => 'Accueil',
+	'Login' => 'Connexion',
+	'Logout' => 'Déconnexion',
     'Projects can be moved :' => 'Les projets peuvent être déplacés :',
     'Reset' => 'Réinitialiser',
     'Save' => 'Sauvegarder',
