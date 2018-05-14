@@ -47,7 +47,7 @@ AppAsset::register($this);
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->tmuser_login . ')',
+                    Yii::t('app','Logout') . ' (' . Yii::$app->user->identity->tmuser_login . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
