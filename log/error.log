@@ -705,3 +705,5 @@ Stack trace:
 #3 [internal function]: yii\base\ErrorHandler->handleFatalError()
 #4 {main}
   thrown in /var/www/YII2/taskmanager/vendor/yiisoft/yii2/web/Response.php on line 366" while reading upstream, client: 127.0.0.1, server: yii, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.1-fpm.sock:", host: "localhost:8013"
+2018/05/14 19:24:29 [error] 4485#4485: *206 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/YII2/taskmanager_shared/taskmanager-2018-v2/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/web/index.php on line 7
+PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/YII2/taskmanager_shared/taskmanager-2018-v2/web/../vendor/autoload.php' (include_path='.:/usr/share/php') in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/web/index.php on line 7" while reading response header from upstream, client: 127.0.0.1, server: yii, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.1-fpm.sock:", host: "localhost:8014"
