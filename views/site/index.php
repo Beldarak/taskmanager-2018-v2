@@ -32,10 +32,16 @@ $this->title = 'My Yii Application';
         ],
         [
             'attribute'=>'task',
-            'value'=>'task.task_name'
+            'value'=>'task.task_name',
+			//'htmlOptions'=>array('class'=>'david','data-id'=>'task.task_id')
         ]
+		
     ],
+	'rowOptions' => function ($model, $key, $index, $grid) {
+		return ['class'=>'david', 'data-id'=>$model->tmuser_task_task];
+	}
     ]); 
+	
 
     /*
         'task_id',
@@ -62,14 +68,28 @@ $this->title = 'My Yii Application';
     'sortUrl' => Url::to(['sortItem']),
     
     'columns' => [
-        'task_name',
-        'task_description',
-        'task_creator',
-        'task_parent',
-        'task_limit',
-        'task_status',
-        'task_emergency',
-        'task_end',
-        'task_priority',
+        /*
+        [
+            'attribute'=>'tmuser_task_order',
+            'value'=>'tmuser_task_order'
+        ],
+        */
+        [
+            'attribute'=>'user',
+            'value'=>'user.tmuser_name'
+        ],
+        [
+            'attribute'=>'task',
+            'value'=>'task.task_name'
+        ]
     ],
-    ]); ?>
+    ]); 
+	
+	$this->registerJs("
+		$('.david').on('click', function (evt) {
+			console.log($(this).closest('tr').data('id'));			
+		});
+	
+	");
+	
+	?>
