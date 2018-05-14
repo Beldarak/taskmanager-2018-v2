@@ -2,9 +2,9 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=taskmanager',
-    'username' => 'ownage',
-    'password' => 'own3d-666',
+    'dsn' => 'mysql:host=localhost;dbname=taskmanager2018',
+    'username' => 'root',
+    'password' => 'root',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
