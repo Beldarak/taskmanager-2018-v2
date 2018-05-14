@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
-use richardfan\sortable\SortableGridView;
+use app\components\MySortableGridView;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
@@ -14,7 +14,7 @@ $this->title = 'My Yii Application';
         <?= Yii::t('app','Projects can be moved :');?>
     </h3></br>
     
-    <?= SortableGridView::widget([
+    <?= MySortableGridView::widget([
     'dataProvider' => $dataProvider2,
     
     'sortUrl' => Yii::$app->urlManager->createUrl('/site/sortItem'),
@@ -56,7 +56,7 @@ $this->title = 'My Yii Application';
         <?= Yii::t('app','Tasks can be moved :');?>
     </h3></br>
     
-    <?= SortableGridView::widget([
+    <?= MySortableGridView::widget([
     'dataProvider' => $dataProvider3,
     
     'sortUrl' => Url::to(['sortItem']),
