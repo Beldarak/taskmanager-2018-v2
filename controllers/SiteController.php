@@ -18,9 +18,13 @@ use yii\data\ActiveDataProvider;
 
 class SiteController extends Controller
 {
+	
+	public $currentProject = null;
+	
     /**
      * {@inheritdoc}
      */
+	 
     public function behaviors()
     {
         return [
@@ -90,56 +94,131 @@ class SiteController extends Controller
             
             $query2 = Task::find()
                     ->where('task_parent IS NULL');
-            
-            $query3 = Task::find()
-                    ->where(['IS NOT', 'task_parent', null]);
+					
+			
+            if ($this->currentProject != null)
+			{
+				$subQuery = Task::find()
+							->select('task_id')
+							->where(['task_parent' => $currentProject->tmuserTaskTask]);
+							
+								
+				$query = TmuserTask::find()
+						  ->andFilterWhere(['tmuser_task_tmuser' => $user])
+						  ->andFilterWhere(['in', 'tmuser_task_task', $subQuery]);
+						  
+				$query3 = $query->all()
+						  ->orderBy('tmuser_task_order', 'ASC');
+						  
+				$query4 = TmuserTask::find()
+						->select('tmuser_task.*,'
+							.'task.task_id as task_id, task.task_name as task_name');
+						
 
-            $query4 = TmuserTask::find()
-                    ->select('tmuser_task.*,'
-                        .'task.task_id as task_id, task.task_name as task_name')
-                    ->leftJoin('task', 'task.task_id=tmuser_task.tmuser_task_task');
+				$query4 = TmuserTask::find()
+						->where('tmuser_task_task IS NOT NULL')
+						->andFilterWhere(['tmuser_task_tmuser' => $user])
+						->orderBy('tmuser_task_order', 'ASC');
 
-            $query4 = TmuserTask::find()
-                    ->where('tmuser_task_task IS NOT NULL')
-                    ->andFilterWhere(['tmuser_task_tmuser' => $user])
-                    ->orderBy('tmuser_task_order', 'ASC');
+				$query = TmuserTask::find()->select('tmuser_task.*,'
+				. 't.task_id as TaskId, t.task_name as TaskName ')->
+				leftJoin('task t', 't.task_id=tmuser_task.tmuser_task_task');
 
-            $query = TmuserTask::find()->select('tmuser_task.*,'
-            . 't.task_id as TaskId, t.task_name as TaskName ')->
-            leftJoin('task t', 't.task_id=tmuser_task.tmuser_task_task');
+				$dataProvider = new ActiveDataProvider([
+					'query' => $query,
+				]);
 
-            $dataProvider = new ActiveDataProvider([
-                'query' => $query,
-            ]);
-
-            $dataProvider->setSort([
-            'attributes' => [
+				$dataProvider->setSort([
+				'attributes' => [
                 'tmuser_task_task',
                 'tmuser_task_tmuser',
                 'tmuser_task_order',
                 'TaskId',
                 'TaskName']]);
 
-            $query5 = Task::find()
-                    ->viaTable('tmuser_task', ['task_id' => 'tmuser_task_task']);
-              
-            $dataProvider2 = new ActiveDataProvider([
-                'query' => $query4
-            ]);
-            
-            $dataProvider3 = new ActiveDataProvider([
-                'query' => $query3
-            ]);
-            
-            
-            //$dataProvider2 = $searchModel->search(Yii::$app->request->queryParams);
+				$query5 = Task::find()
+						->viaTable('tmuser_task', ['task_id' => 'tmuser_task_task']);
+				  
+				$dataProvider2 = new ActiveDataProvider([
+					'query' => $query4
+				]);
+				
+				$dataProvider3 = new ActiveDataProvider([
+					'query' => $query3
+				]);
+				
+				
+				//$dataProvider2 = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-                'dataProvider2' => $dataProvider2, 
-                'dataProvider3' => $dataProvider3,
-            ]);
+				return $this->render('index', [
+					'searchModel' => $searchModel,
+					'dataProvider2' => $dataProvider2, 
+					'dataProvider3' => $dataProvider3,
+				]);
+			}
+			else
+			{
+				
+				$subQuery = Task::find()
+							->select('task_id')
+							->where(['IS NOT', 'task_parent', null]);
+							
+								
+				$query3 = TmuserTask::find()
+						  ->andFilterWhere(['tmuser_task_tmuser' => $user])
+						  ->andFilterWhere(['in', 'tmuser_task_task', $subQuery])
+						  ->orderBy('tmuser_task_order', 'ASC');
+						  
+						  
+				$query4 = TmuserTask::find()
+						->select('tmuser_task.*,'
+							.'task.task_id as task_id, task.task_name as task_name');
+						
+
+				$query4 = TmuserTask::find()
+						->where('tmuser_task_task IS NOT NULL')
+						->andFilterWhere(['tmuser_task_tmuser' => $user])
+						->orderBy('tmuser_task_order', 'ASC');
+
+				$query = TmuserTask::find()->select('tmuser_task.*,'
+				. 't.task_id as TaskId, t.task_name as TaskName ')->
+				leftJoin('task t', 't.task_id=tmuser_task.tmuser_task_task');
+
+				$dataProvider = new ActiveDataProvider([
+					'query' => $query,
+				]);
+
+				$dataProvider->setSort([
+				'attributes' => [
+                'tmuser_task_task',
+                'tmuser_task_tmuser',
+                'tmuser_task_order',
+                'TaskId',
+                'TaskName']]);
+
+				$query5 = Task::find()
+						->viaTable('tmuser_task', ['task_id' => 'tmuser_task_task']);
+				  
+				$dataProvider2 = new ActiveDataProvider([
+					'query' => $query4
+				]);
+				
+				$dataProvider3 = new ActiveDataProvider([
+					'query' => $query3
+				]);
+				
+				
+				//$dataProvider2 = $searchModel->search(Yii::$app->request->queryParams);
+
+				return $this->render('index', [
+					'searchModel' => $searchModel,
+					'dataProvider2' => $dataProvider2, 
+					'dataProvider3' => $dataProvider3,
+				]);
+			}
+					
+
+				
         }
 
         
