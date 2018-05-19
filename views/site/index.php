@@ -84,12 +84,24 @@ $this->title = 'My Yii Application';
         ]
     ],
     ]); 
-	
+	/*
 	$this->registerJs("
 		$('.david').on('click', function (evt) {
 			console.log($(this).closest('tr').data('id'));			
 		});
+		
+		$.ajax({
+			url: "'.Yii::$app->urlManager->createUrl('site/display-concerned-tasks').'",
+			method: "POST",
+			data: { id: $(this).val() }
+		})
+		.done(function( data ) {
+			$( "select#'.Html::getInputId($modelDet, 'id').'").html( data );
+		})
+		.fail(function(xhr,status,error) { // récupérer la réponse
+			alert(status+\' : \'+xhr.responseText); // afficher cette réponse
+		});
 	
 	");
-	
+	*/
 	?>

@@ -240,4 +240,28 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+	
+	public function actionDisplayConcernedTasks(){
+		if (Yii::$app->request->isAjax) {
+		
+			$data = Yii::$app->request->post();
+			
+			if ($data['id']) {
+				$tasks = array();
+				$results = $tasks->getTasks->where(['task_parent' => $data['id']]);
+				/*
+				if (count($results) > 0) {
+					foreach ($results as $result) {
+						echo '<div value="'.$result->id.'">'.$result->nom.'</div>';
+					}
+				} else {
+					echo '<option>Aucun aliment à sélectionner</option>';
+				}*/
+
+			} else {
+				echo '<div>' . Yii::t('app','No task found for this project') . '</div>';
+			}
+			
+        }
+	}
 }
