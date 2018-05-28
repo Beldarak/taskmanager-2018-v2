@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -15,6 +16,7 @@ use app\models\TmuserTask;
 use yii\web\NotFoundHttpException;
 use richardfan\sortable\SortableAction;
 use yii\data\ActiveDataProvider;
+use app\components\MySortableGridView;
 
 class SiteController extends Controller
 {
@@ -67,6 +69,62 @@ class SiteController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionShowTasks()
+    {
+        
+        if (Yii::$app->request->isAjax) {
+
+            $data = Yii::$app->request->post();
+
+            if($data['id'] && !Yii::$app->user->isGuest){
+
+                $user = Yii::$app->user->identity->tmuser_id;
+
+                $subQuery = Task::find()
+                            ->select('task_id')
+                            ->where(['task_parent' => $data['id']]);
+
+                $query = TmuserTask::find()
+                        ->andFilterWhere(['tmuser_task_tmuser' => $user])
+                        ->andFilterWhere(['in', 'tmuser_task_task', $subQuery])
+                        ->orderBy('tmuser_task_order', 'ASC');
+
+                $provider = new ActiveDataProvider(['query'=>$query]);
+                
+                echo MySortableGridView::widget([
+                    'id' => 'subTasks',
+
+                    'dataProvider' => $provider,
+                    
+                    'sortUrl' => Url::to(['sortItem']),
+                    
+                    'columns' => [
+                        /*
+                        [
+                            'attribute'=>'tmuser_task_order',
+                            'value'=>'tmuser_task_order'
+                        ],
+                        */
+                        [
+                            'attribute'=>'user',
+                            'value'=>'user.tmuser_name'
+                        ],
+                        [
+                            'attribute'=>'task',
+                            'value'=>'task.task_name'
+                        ]
+                    ],
+                ]);
+
+            }
+
+            return false;
+            
+        }else{
+            //return 50/0;
+        }
     }
 
     /**
@@ -241,27 +299,4 @@ class SiteController extends Controller
         return $this->render('about');
     }
 	
-	public function actionDisplayConcernedTasks(){
-		if (Yii::$app->request->isAjax) {
-		
-			$data = Yii::$app->request->post();
-			
-			if ($data['id']) {
-				$tasks = array();
-				$results = $tasks->getTasks->where(['task_parent' => $data['id']]);
-				/*
-				if (count($results) > 0) {
-					foreach ($results as $result) {
-						echo '<div value="'.$result->id.'">'.$result->nom.'</div>';
-					}
-				} else {
-					echo '<option>Aucun aliment à sélectionner</option>';
-				}*/
-
-			} else {
-				echo '<div>' . Yii::t('app','No task found for this project') . '</div>';
-			}
-			
-        }
-	}
 }

@@ -4,6 +4,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 use app\components\MySortableGridView;
 /* @var $this yii\web\View */
 
@@ -38,7 +39,7 @@ $this->title = 'My Yii Application';
 		
     ],
 	'rowOptions' => function ($model, $key, $index, $grid) {
-		return ['class'=>'david', 'data-id'=>$model->tmuser_task_task];
+		return ['class'=>'task', 'data-id'=>$model->tmuser_task_task];
 	}
     ]); 
 	
@@ -62,46 +63,49 @@ $this->title = 'My Yii Application';
         <?= Yii::t('app','Tasks can be moved :');?>
     </h3></br>
     
+    <div id='subTasks'>
     <?= MySortableGridView::widget([
-    'dataProvider' => $dataProvider3,
-    
-    'sortUrl' => Url::to(['sortItem']),
-    
-    'columns' => [
-        /*
-        [
-            'attribute'=>'tmuser_task_order',
-            'value'=>'tmuser_task_order'
+        'id' => 'mySubTasks',
+
+        'dataProvider' => $dataProvider3,
+        
+        'sortUrl' => Url::to(['sortItem']),
+        
+        'columns' => [
+            /*
+            [
+                'attribute'=>'tmuser_task_order',
+                'value'=>'tmuser_task_order'
+            ],
+            */
+            [
+                'attribute'=>'user',
+                'value'=>'user.tmuser_name'
+            ],
+            [
+                'attribute'=>'task',
+                'value'=>'task.task_name'
+            ]
         ],
-        */
-        [
-            'attribute'=>'user',
-            'value'=>'user.tmuser_name'
-        ],
-        [
-            'attribute'=>'task',
-            'value'=>'task.task_name'
-        ]
-    ],
-    ]); 
-	/*
+    ]);
+    ?>
+    </div>
+
+    <?=
 	$this->registerJs("
-		$('.david').on('click', function (evt) {
-			console.log($(this).closest('tr').data('id'));			
-		});
-		
-		$.ajax({
-			url: "'.Yii::$app->urlManager->createUrl('site/display-concerned-tasks').'",
-			method: "POST",
-			data: { id: $(this).val() }
-		})
-		.done(function( data ) {
-			$( "select#'.Html::getInputId($modelDet, 'id').'").html( data );
-		})
-		.fail(function(xhr,status,error) { // récupérer la réponse
-			alert(status+\' : \'+xhr.responseText); // afficher cette réponse
-		});
-	
+		$('.task').on('click', function (evt) {
+			console.log($(this).closest('tr').data('id'));
+            $.ajax({
+                url: '".Yii::$app->urlManager->createUrl('site/show-tasks')."',
+                method: 'POST',
+                data: { id: $(this).closest('tr').data('id') }
+            })
+            .done(function(data) {
+                $('#subTasks').html(data);
+            })
+            .fail(function(xhr, status, error){
+                console.log('ERROR');
+            });			
+		});	
 	");
-	*/
 	?>

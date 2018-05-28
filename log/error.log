@@ -707,3 +707,35 @@ Stack trace:
   thrown in /var/www/YII2/taskmanager/vendor/yiisoft/yii2/web/Response.php on line 366" while reading upstream, client: 127.0.0.1, server: yii, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.1-fpm.sock:", host: "localhost:8013"
 2018/05/14 19:24:29 [error] 4485#4485: *206 FastCGI sent in stderr: "PHP message: PHP Warning:  require(/var/www/YII2/taskmanager_shared/taskmanager-2018-v2/web/../vendor/autoload.php): failed to open stream: No such file or directory in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/web/index.php on line 7
 PHP message: PHP Fatal error:  require(): Failed opening required '/var/www/YII2/taskmanager_shared/taskmanager-2018-v2/web/../vendor/autoload.php' (include_path='.:/usr/share/php') in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/web/index.php on line 7" while reading response header from upstream, client: 127.0.0.1, server: yii, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.1-fpm.sock:", host: "localhost:8014"
+2018/05/19 14:09:31 [error] 775#775: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught yii\web\HeadersAlreadySentException: Headers already sent in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php on line 414. in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/base/ErrorHandler.php(262): yii\web\ErrorHandler->renderException(Object(yii\base\ErrorException))
+#3 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#4 {main}
+  thrown in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php on line 366" while reading upstream, client: 127.0.0.1, server: yii, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.1-fpm.sock:", host: "localhost:8014"
+2018/05/19 14:09:37 [error] 776#776: *3 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught yii\web\HeadersAlreadySentException: Headers already sent in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php on line 414. in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/base/ErrorHandler.php(262): yii\web\ErrorHandler->renderException(Object(yii\base\ErrorException))
+#3 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#4 {main}
+  thrown in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php on line 366" while reading upstream, client: 127.0.0.1, server: yii, request: "GET /debug/default/toolbar?tag=5b001401c9825 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.1-fpm.sock:", host: "localhost:8014", referrer: "http://localhost:8014/"
+2018/05/28 18:10:40 [error] 782#782: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught yii\web\HeadersAlreadySentException: Headers already sent in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php on line 414. in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/base/ErrorHandler.php(262): yii\web\ErrorHandler->renderException(Object(yii\base\ErrorException))
+#3 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#4 {main}
+  thrown in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php on line 366" while reading upstream, client: 127.0.0.1, server: yii, request: "GET / HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.1-fpm.sock:", host: "localhost:8014"
+2018/05/28 18:10:46 [error] 781#781: *4 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught yii\web\HeadersAlreadySentException: Headers already sent in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php on line 414. in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php:366
+Stack trace:
+#0 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php(339): yii\web\Response->sendHeaders()
+#1 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/ErrorHandler.php(135): yii\web\Response->send()
+#2 /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/base/ErrorHandler.php(262): yii\web\ErrorHandler->renderException(Object(yii\base\ErrorException))
+#3 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#4 {main}
+  thrown in /var/www/YII2/taskmanager_shared/taskmanager-2018-v2/vendor/yiisoft/yii2/web/Response.php on line 366" while reading upstream, client: 127.0.0.1, server: yii, request: "GET /debug/default/toolbar?tag=5b0c2a0697e11 HTTP/1.1", upstream: "fastcgi://unix:/var/run/php/php7.1-fpm.sock:", host: "localhost:8014", referrer: "http://localhost:8014/"
